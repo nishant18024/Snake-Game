@@ -4,22 +4,54 @@ let context = canvas.getContext('2d');
 let cellSize = 50;
 let boardHeight = 600;
 let boardWidth = 1000;
+let snakeCell = [[0, 0]];
+let direction = 'right';
 
 // Function to draw the snake
 function draw() {
+    context.clearRect(0, 0, boardWidth, boardHeight);
+    for (const cell of snakeCell) {
+        context.fillStyle = 'red';
+        context.fillRect(cell[0], cell[1], cellSize, cellSize);
+    }
 
 }
 
 // function to update snake length
 function update() {
-    
+    let headX = snakeCell[snakeCell.length - 1][0];
+    let headY = snakeCell[snakeCell.length - 1][1];
+
+    let newHeadX = headX + cellSize;
+    let newHeadY = headY;
+
+    snakeCell.push([newHeadX, newHeadY]);
+    snakeCell.shift();
+
 }
+
+// Cdode for movement of Snake
+document.body.addEventListener('keydown', function (event) {
+    if (key == 'ArrowUp') {
+        
+    }
+    else if (key == 'ArrowDown') {
+
+    }
+    else if (key == 'ArrowRight') {
+
+    }
+    else {
+
+    }
+})
 
 // It will update the snake after an interval of 2 ms
 setInterval(function () {
     update();
     draw();
 }, 200)
+
 
 
 
