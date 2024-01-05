@@ -6,6 +6,8 @@ let boardHeight = 600;
 let boardWidth = 1000;
 let snakeCell = [[0, 0]];
 let direction = 'right';
+// Variable to track start time
+let startTime = Date.now(); 
 
 // Function to draw the snake
 function draw() {
@@ -23,7 +25,6 @@ function update() {
 
     let newHeadX, newHeadY;
 
-    // this can be changed
     switch (direction) {
         case 'up':
             newHeadX = headX;
@@ -65,8 +66,17 @@ document.body.addEventListener('keydown', function (event) {
     }
 });
 
-// It will update the snake after an interval of 200 ms
+// Timer function
+function timer() {
+    let currentTime = Date.now();
+    let elapsedTime = currentTime - startTime;
+    let seconds = Math.floor(elapsedTime / 1000);
+    document.getElementById('timer').innerText = `Time: ${seconds} seconds`;
+}
+
+// It will update the snake and timer after an interval of 200 ms
 setInterval(function () {
     update();
     draw();
+    timer(); // Call timer function
 }, 200);
